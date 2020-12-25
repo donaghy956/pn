@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://github.com/donaghy956/pn/tags/index.html</loc>
+    
+    <lastmod>2020-12-25</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://github.com/donaghy956/pn/categories/index.html</loc>
     
-    <lastmod>2020-12-24</lastmod>
+    <lastmod>2020-12-25</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://github.com/donaghy956/pn/link/index.html</loc>
+    
+    <lastmod>2020-12-25</lastmod>
     
   </url>
   
