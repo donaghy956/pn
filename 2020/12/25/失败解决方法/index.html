@@ -1,0 +1,224 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>node.js-setup wizard ended prematurely失败解决方法 | Donaghy的个人博客</title><meta name="keywords" content="Ubuntu asd"><meta name="author" content="Donaghy"><meta name="copyright" content="Donaghy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="第一步：点击链接下载nodejs安装包https:&#x2F;&#x2F;nodejs.org&#x2F;en&#x2F;download&#x2F;   第二步：解压到到一个你通常习惯的盘中比喻c盘 解压可命名为nodejs   修改名称为nodejs   第三步：配置环境变量 找到原有的path   添加nodejs文件路径 比喻我的路径为   配置   在配置nodejs文件加下面的node_modules文件夹路径 一定要注意“;”隔开">
+<meta property="og:type" content="article">
+<meta property="og:title" content="node.js-setup wizard ended prematurely失败解决方法">
+<meta property="og:url" content="https://github.com/donaghy956/pn/2020/12/25/%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="Donaghy的个人博客">
+<meta property="og:description" content="第一步：点击链接下载nodejs安装包https:&#x2F;&#x2F;nodejs.org&#x2F;en&#x2F;download&#x2F;   第二步：解压到到一个你通常习惯的盘中比喻c盘 解压可命名为nodejs   修改名称为nodejs   第三步：配置环境变量 找到原有的path   添加nodejs文件路径 比喻我的路径为   配置   在配置nodejs文件加下面的node_modules文件夹路径 一定要注意“;”隔开">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2020-12-25T06:58:00.000Z">
+<meta property="article:modified_time" content="2020-12-25T06:58:47.066Z">
+<meta property="article:author" content="Donaghy">
+<meta property="article:tag" content="Ubuntu asd">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/pn/img/favicon.png"><link rel="canonical" href="https://github.com/donaghy956/pn/2020/12/25/%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/pn/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var GLOBAL_CONFIG = { 
+  root: '/pn/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Donaghy","link":"链接: ","source":"来源: Donaghy的个人博客","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}
+
+// https://stackoverflow.com/questions/16839698/jquery-getscript-alternative-in-native-javascript
+const getScript = url => new Promise((resolve, reject) => {
+  const script = document.createElement('script')
+  script.src = url
+  script.async = true
+  script.onerror = reject
+  script.onload = script.onreadystatechange = function() {
+    const loadState = this.readyState
+    if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+    script.onload = script.onreadystatechange = null
+    resolve()
+  }
+  document.head.appendChild(script)
+})</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2020-12-25 14:58:47'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/pn/atom.xml" title="Donaghy的个人博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="/pn/img/head.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/pn/archives/"><div class="headline">文章</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/pn/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/pn/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/pn/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/pn/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 目录</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/pn/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page" href="/pn/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/pn/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/pn/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/pn/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/pn/">Donaghy的个人博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/pn/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/pn/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/pn/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/pn/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 目录</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/pn/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page" href="/pn/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/pn/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/pn/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/pn/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">node.js-setup wizard ended prematurely失败解决方法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-12-25T06:58:00.000Z" title="发表于 2020-12-25 14:58:00">2020-12-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-12-25T06:58:47.066Z" title="更新于 2020-12-25 14:58:47">2020-12-25</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>第一步：点击链接下载nodejs安装包<a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a></p>
+<img src= "/pn/img/loading.gif" data-lazy-src="/pn/2020/12/25/%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/c6d2d6d3a14f438d8e29b6ce72e49f6c.png" class="" title="img">
+
+<p>第二步：解压到到一个你通常习惯的盘中比喻c盘 解压可命名为nodejs</p>
+<img src= "/pn/img/loading.gif" data-lazy-src="/pn/2020/12/25/%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/c3c113296b4243b2ae2686c9dc2c6bc9.png" class="" title="img">
+
+<p>修改名称为nodejs</p>
+<img src= "/pn/img/loading.gif" data-lazy-src="/pn/2020/12/25/%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/0b215bbf9b864547b1edaab5aeb95d0f.png" class="" title="img">
+
+<p>第三步：配置环境变量 找到原有的path</p>
+<img src= "/pn/img/loading.gif" data-lazy-src="/pn/2020/12/25/%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/bd80ebca91924a5eb00a1d6f0f8bd12b.png" class="" title="img">
+
+<p>添加nodejs文件路径</p>
+<p>比喻我的路径为</p>
+<img src= "/pn/img/loading.gif" data-lazy-src="/pn/2020/12/25/%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/99f57d63fc8246199a04af5384d7d60a.png" class="" title="img">
+
+<p>配置</p>
+<img src= "/pn/img/loading.gif" data-lazy-src="/pn/2020/12/25/%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/f585ba6885e3402d9b6ce95a1b83a23f.png" class="" title="img">
+
+<p>在配置nodejs文件加下面的node_modules文件夹路径 一定要注意“;”隔开</p>
+<img src= "/pn/img/loading.gif" data-lazy-src="/pn/2020/12/25/%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/2f8fe6f5a9594873a78c41a0603eb2ec.png" class="" title="img">
+
+<p>第四步：安装express</p>
+<p>按wind+r 输入cmd按确定</p>
+<img src= "/pn/img/loading.gif" data-lazy-src="/pn/2020/12/25/%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/6ad028d932804d8db59b50eead7ba73c.png" class="" title="img">
+
+<p>出现</p>
+<img src= "/pn/img/loading.gif" data-lazy-src="/pn/2020/12/25/%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/3ebf1722f61943128de53a0947ceff81.png" class="" title="img">
+
+<p>然后进入node_modules目录</p>
+<img src= "/pn/img/loading.gif" data-lazy-src="/pn/2020/12/25/%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/e2bede80300949d68d00c417ef38b9ba.png" class="" title="img">
+
+<p>在输入命令 npm install express</p>
+<img src= "/pn/img/loading.gif" data-lazy-src="/pn/2020/12/25/%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/e0f116cd87664a69b8f2b926aabe0ab8.png" class="" title="img">
+
+<p>然后会出现以下图片</p>
+<img src= "/pn/img/loading.gif" data-lazy-src="/pn/2020/12/25/%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/a6f00375ca5e46aa81b64a3fb21148e3.png" class="" title="img">
+
+<p>在输入node -v 检查安装版本</p>
+<img src= "/pn/img/loading.gif" data-lazy-src="/pn/2020/12/25/%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/2f47a7243be54aa4984495f04af55439.png" class="" title="img">
+
+<p>在输入npm -v 若出现以下错误 若没出现错误那么久恭喜你安装成功了！</p>
+<img src= "/pn/img/loading.gif" data-lazy-src="/pn/2020/12/25/%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/d4811e93827d44e8b5038b29e8d01f75.png" class="" title="img">
+
+<p>下载可能是npm出问题了需要重新安装npm 地址为： <a target="_blank" rel="noopener" href="http://nodejs.org/dist/npm/">http://nodejs.org/dist/npm/</a> 下载后解压 解压后找到npm文件夹然后复制</p>
+<img src= "/pn/img/loading.gif" data-lazy-src="/pn/2020/12/25/%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/d9aa4464c5e14b04ad7889ba69f0e209.png" class="" title="img">
+
+<p>在找到nodejs安装目录下的node_modules文件然后粘贴npm文件夹</p>
+<img src= "/pn/img/loading.gif" data-lazy-src="/pn/2020/12/25/%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/ebbb0215198d4a08b4b24cd8a7408724.png" class="" title="img">
+
+<p>这是在输入 npm -v呈现以下图片那么恭喜你安装成功了！</p>
+<img src= "/pn/img/loading.gif" data-lazy-src="/pn/2020/12/25/%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/370ff60f59064c75aa1bb429ceec4432.png" class="" title="img"></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Donaghy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://github.com/donaghy956/pn/2020/12/25/%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">https://github.com/donaghy956/pn/2020/12/25/%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://github.com/donaghy956/pn" target="_blank">Donaghy的个人博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/pn/2020/12/25/Ubuntu18-04%E8%87%AA%E5%B8%A6%E6%88%AA%E5%9B%BE%E6%95%99%E7%A8%8B/"><img class="next-cover" data-lazy-src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/pn/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Ubuntu18.04自带截图教程</div></div></a></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="/pn/img/head.png" onerror="this.onerror=null;this.src='/pn/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Donaghy</div><div class="author-info__description">个人博客搞搞搞哈哈哈</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/pn/archives/"><div class="headline">文章</div><div class="length-num">6</div></a></div></div><a class="button--animated" id="card-info-btn" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/donaghy956" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/pn/952957407@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">通知：这是一个新博客，正在筹建中...</div></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/pn/2020/12/25/%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" title="node.js-setup wizard ended prematurely失败解决方法"><img data-lazy-src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/pn/img/404.jpg'" alt="node.js-setup wizard ended prematurely失败解决方法"/></a><div class="content"><a class="title" href="/pn/2020/12/25/%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" title="node.js-setup wizard ended prematurely失败解决方法">node.js-setup wizard ended prematurely失败解决方法</a><time datetime="2020-12-25T06:58:00.000Z" title="发表于 2020-12-25 14:58:00">2020-12-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/pn/2020/12/25/Ubuntu18-04%E8%87%AA%E5%B8%A6%E6%88%AA%E5%9B%BE%E6%95%99%E7%A8%8B/" title="Ubuntu18.04自带截图教程"><img data-lazy-src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/pn/img/404.jpg'" alt="Ubuntu18.04自带截图教程"/></a><div class="content"><a class="title" href="/pn/2020/12/25/Ubuntu18-04%E8%87%AA%E5%B8%A6%E6%88%AA%E5%9B%BE%E6%95%99%E7%A8%8B/" title="Ubuntu18.04自带截图教程">Ubuntu18.04自带截图教程</a><time datetime="2020-12-25T06:35:23.000Z" title="发表于 2020-12-25 14:35:23">2020-12-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/pn/2020/12/25/%E4%BD%BF%E7%94%A8Hexo-Github%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/" title="使用Hexo+Github一步步搭建属于自己的博客"><img data-lazy-src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/pn/img/404.jpg'" alt="使用Hexo+Github一步步搭建属于自己的博客"/></a><div class="content"><a class="title" href="/pn/2020/12/25/%E4%BD%BF%E7%94%A8Hexo-Github%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/" title="使用Hexo+Github一步步搭建属于自己的博客">使用Hexo+Github一步步搭建属于自己的博客</a><time datetime="2020-12-25T03:56:10.000Z" title="发表于 2020-12-25 11:56:10">2020-12-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/pn/2020/12/25/Ubuntu18-04%E4%BD%BF%E7%94%A8Systemback%E5%88%B6%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F%E5%B9%B6%E8%BF%98%E5%8E%9F/" title="Ubuntu18.04使用Systemback制作系统镜像并还原"><img data-lazy-src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/pn/img/404.jpg'" alt="Ubuntu18.04使用Systemback制作系统镜像并还原"/></a><div class="content"><a class="title" href="/pn/2020/12/25/Ubuntu18-04%E4%BD%BF%E7%94%A8Systemback%E5%88%B6%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F%E5%B9%B6%E8%BF%98%E5%8E%9F/" title="Ubuntu18.04使用Systemback制作系统镜像并还原">Ubuntu18.04使用Systemback制作系统镜像并还原</a><time datetime="2020-12-25T03:44:04.000Z" title="发表于 2020-12-25 11:44:04">2020-12-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/pn/2020/12/24/%E8%A7%A3%E5%86%B3%EF%BC%9Ahexo-github%E6%9C%AC%E5%9C%B0%E5%92%8C%E7%BA%BF%E4%B8%8A%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/" title="解决：hexo+github本地和线上图片不显示问题"><img data-lazy-src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/pn/img/404.jpg'" alt="解决：hexo+github本地和线上图片不显示问题"/></a><div class="content"><a class="title" href="/pn/2020/12/24/%E8%A7%A3%E5%86%B3%EF%BC%9Ahexo-github%E6%9C%AC%E5%9C%B0%E5%92%8C%E7%BA%BF%E4%B8%8A%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/" title="解决：hexo+github本地和线上图片不显示问题">解决：hexo+github本地和线上图片不显示问题</a><time datetime="2020-12-24T09:33:23.000Z" title="发表于 2020-12-24 17:33:23">2020-12-24</time></div></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg)"><div id="footer-wrap"><div class="copyright">&copy;2020 By Donaghy</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/pn/js/utils.js"></script><script src="/pn/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="/pn/js/search/local-search.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script></div></body></html>
