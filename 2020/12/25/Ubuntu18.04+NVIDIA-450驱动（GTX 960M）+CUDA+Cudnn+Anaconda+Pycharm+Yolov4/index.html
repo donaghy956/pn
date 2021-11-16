@@ -1,0 +1,233 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ubuntu18.04+NVIDIA-450驱动（GTX 960M）+CUDA+Cudnn+Anaconda+Pycharm+Yolov4 | 让我们一起记录生活</title><meta name="keywords" content="QT"><meta name="author" content="Donaghy"><meta name="copyright" content="Donaghy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="Ubuntu18.04+NVIDIA-450驱动（GTX 960M）+CUDA+Cudnn+Anaconda+Pycharm+Yolov41.安装显卡驱动在软件商店的右上角位置点击软件和更新, 找到附加驱动，选择nvidia- driver-450（专有），然后点击应用更改。![在这里插入图片描述](Ubuntu18.04+NVIDIA-450驱动（GTX 960M）+CUDA+Cudnn+Ana">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu18.04+NVIDIA-450驱动（GTX 960M）+CUDA+Cudnn+Anaconda+Pycharm+Yolov4">
+<meta property="og:url" content="https://github.com/donaghy956/pn/2020/12/25/Ubuntu18.04+NVIDIA-450%E9%A9%B1%E5%8A%A8%EF%BC%88GTX%20960M%EF%BC%89+CUDA+Cudnn+Anaconda+Pycharm+Yolov4/index.html">
+<meta property="og:site_name" content="让我们一起记录生活">
+<meta property="og:description" content="Ubuntu18.04+NVIDIA-450驱动（GTX 960M）+CUDA+Cudnn+Anaconda+Pycharm+Yolov41.安装显卡驱动在软件商店的右上角位置点击软件和更新, 找到附加驱动，选择nvidia- driver-450（专有），然后点击应用更改。![在这里插入图片描述](Ubuntu18.04+NVIDIA-450驱动（GTX 960M）+CUDA+Cudnn+Ana">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/11/05/GgxMLEaSvqnbKJH.jpg">
+<meta property="article:published_time" content="2020-12-25T06:58:00.000Z">
+<meta property="article:modified_time" content="2021-11-16T06:00:48.393Z">
+<meta property="article:author" content="Donaghy">
+<meta property="article:tag" content="QT">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/11/05/GgxMLEaSvqnbKJH.jpg"><link rel="shortcut icon" href="/pn/img/favicon.png"><link rel="canonical" href="https://github.com/donaghy956/pn/2020/12/25/Ubuntu18.04+NVIDIA-450%E9%A9%B1%E5%8A%A8%EF%BC%88GTX%20960M%EF%BC%89+CUDA+Cudnn+Anaconda+Pycharm+Yolov4/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/pn/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var GLOBAL_CONFIG = { 
+  root: '/pn/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Donaghy","link":"链接: ","source":"来源: 让我们一起记录生活","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}
+
+// https://stackoverflow.com/questions/16839698/jquery-getscript-alternative-in-native-javascript
+const getScript = url => new Promise((resolve, reject) => {
+  const script = document.createElement('script')
+  script.src = url
+  script.async = true
+  script.onerror = reject
+  script.onload = script.onreadystatechange = function() {
+    const loadState = this.readyState
+    if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+    script.onload = script.onreadystatechange = null
+    resolve()
+  }
+  document.head.appendChild(script)
+})</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-11-16 14:00:48'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/pn/atom.xml" title="让我们一起记录生活" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="/pn/img/head.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/pn/archives/"><div class="headline">文章</div><div class="length-num">12</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/pn/tags/"><div class="headline">标签</div><div class="length-num">1</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/pn/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/pn/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/pn/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/pn/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 目录</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/pn/books/"><i class="fa-fw fas fa-images"></i><span> 图书</span></a></li><li><a class="site-page" href="/pn/games/"><i class="fa-fw fas fa-music"></i><span> 游戏</span></a></li><li><a class="site-page" href="/pn/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/pn/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/pn/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://i.loli.net/2021/11/05/GgxMLEaSvqnbKJH.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/pn/">让我们一起记录生活</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/pn/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/pn/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/pn/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/pn/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 目录</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/pn/books/"><i class="fa-fw fas fa-images"></i><span> 图书</span></a></li><li><a class="site-page" href="/pn/games/"><i class="fa-fw fas fa-music"></i><span> 游戏</span></a></li><li><a class="site-page" href="/pn/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/pn/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/pn/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="he-plugin-simple"></div><div id="post-info"><h1 class="post-title">Ubuntu18.04+NVIDIA-450驱动（GTX 960M）+CUDA+Cudnn+Anaconda+Pycharm+Yolov4</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-12-25T06:58:00.000Z" title="发表于 2020-12-25 14:58:00">2020-12-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-11-16T06:00:48.393Z" title="更新于 2021-11-16 14:00:48">2021-11-16</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Ubuntu18-04-NVIDIA-450驱动（GTX-960M）-CUDA-Cudnn-Anaconda-Pycharm-Yolov4"><a href="#Ubuntu18-04-NVIDIA-450驱动（GTX-960M）-CUDA-Cudnn-Anaconda-Pycharm-Yolov4" class="headerlink" title="Ubuntu18.04+NVIDIA-450驱动（GTX 960M）+CUDA+Cudnn+Anaconda+Pycharm+Yolov4"></a>Ubuntu18.04+NVIDIA-450驱动（GTX 960M）+CUDA+Cudnn+Anaconda+Pycharm+Yolov4</h1><h3 id="1-安装显卡驱动"><a href="#1-安装显卡驱动" class="headerlink" title="1.安装显卡驱动"></a>1.安装显卡驱动</h3><p>在软件商店的右上角位置点击软件和更新, 找到附加驱动，选择nvidia- driver-450（专有），然后点击应用更改。<br>![在这里插入图片描述](Ubuntu18.04+NVIDIA-450驱动（GTX 960M）+CUDA+Cudnn+Anaconda+Pycharm+Yolov4/20201215145131708.png)<br>重启<br>运行<code>sudo /usr/bin/nvidia-settings</code>检查驱动安装情况<br>![在这里插入图片描述](Ubuntu18.04+NVIDIA-450驱动（GTX 960M）+CUDA+Cudnn+Anaconda+Pycharm+Yolov4/20201215145235864.png)</p>
+<p>运行<code>cat /proc/driver/nvidia/version</code>查看驱动版本。<br>![在这里插入图片描述](Ubuntu18.04+NVIDIA-450驱动（GTX 960M）+CUDA+Cudnn+Anaconda+Pycharm+Yolov4/20201215145159821.png)</p>
+<h3 id="2-安装CUDA"><a href="#2-安装CUDA" class="headerlink" title="2. 安装CUDA"></a>2. 安装CUDA</h3><p>我的显卡是GTX960m，选择cuda9.0，在nvidia官网下载<br>链接: <a target="_blank" rel="noopener" href="https://developer.nvidia.com/cuda-90-download-archive?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1604&target_type=runfilelocal">CUDA</a>.<br>![在这里插入图片描述](Ubuntu18.04+NVIDIA-450驱动（GTX 960M）+CUDA+Cudnn+Anaconda+Pycharm+Yolov4/20201215145445804.png)将第一主文件和下面4个补丁都下载。</p>
+<ul>
+<li>gcc降级</li>
+</ul>
+<p>由于cuda9.0不支持gcc7,将其降级为6版本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install gcc-6#安装6</span><br><span class="line">sudo apt-get install g++-6</span><br><span class="line">cd &#x2F;usr&#x2F;bin</span><br><span class="line">ls -l gcc* </span><br><span class="line">sudo mv gcc gcc.bak #备份</span><br><span class="line">sudo ln -s gcc-6 gcc #重新链接</span><br><span class="line">sudo mv g++ g++.bak#备份</span><br><span class="line">sudo ln -s g++-6 g++#重新链接</span><br><span class="line">12345678</span><br></pre></td></tr></table></figure>
+<p>运行<code>gcc -v</code>查看版本为6.5<br>![在这里插入图片描述](Ubuntu18.04+NVIDIA-450驱动（GTX 960M）+CUDA+Cudnn+Anaconda+Pycharm+Yolov4/20201215150205303.png)</p>
+<ul>
+<li>安装cuda<br><code>sudo sh cuda_9.0.176_384.81_linux.run</code></li>
+</ul>
+<p>接下来会显示一个文档界面，需要一直按空格读完。<br>最后会有让你选择的命令<br>![在这里插入图片描述](Ubuntu18.04+NVIDIA-450驱动（GTX 960M）+CUDA+Cudnn+Anaconda+Pycharm+Yolov4/20201215150616117.png)<br>因为之前已经装了显卡驱动，所以在是否安装驱动那里选择no。<br>等待安装，<br>![在这里插入图片描述](Ubuntu18.04+NVIDIA-450驱动（GTX 960M）+CUDA+Cudnn+Anaconda+Pycharm+Yolov4/20201215150750683.png)<br>然后继续安装补丁：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo sh cuda_9.0.176.1_linux.run</span><br><span class="line">sudo sh cuda_9.0.176.2_linux.run</span><br><span class="line">sudo sh cuda_9.0.176.3_linux.run</span><br><span class="line">sudo sh cuda_9.0.176.4_linux.run</span><br><span class="line">1234</span><br></pre></td></tr></table></figure>
+<ul>
+<li>添加环境变量<br><code>sudo vim ~/.bashrc</code><br><code>sudo vim ~/.zshrc</code> //zsh用户使用<br>加入</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export PATH&#x3D;&#x2F;usr&#x2F;local&#x2F;cuda-9.0&#x2F;bin$&#123;PATH:+:$PATH&#125;&#125;</span><br><span class="line">export LD_LIBRARY_PATH&#x3D;&#x2F;usr&#x2F;local&#x2F;cuda-9.0&#x2F;lib64$&#123;LD_LIBRARY_PATH:+:$&#123;LD_LIBRARY_PATH&#125;&#125;</span><br><span class="line">12</span><br></pre></td></tr></table></figure>
+<p>最后source一下：<br><code>source ~/.bashrc</code><br><code>source ~/.zshrc</code>//zsh用户使用<br>查看版本：<br><code>cat /usr/local/cuda/version.txt</code><br>![在这里插入图片描述](Ubuntu18.04+NVIDIA-450驱动（GTX 960M）+CUDA+Cudnn+Anaconda+Pycharm+Yolov4/20201215154231148.png)</p>
+<ul>
+<li>测试cuda：<br>进入目录：<br><code>cd /usr/local/cuda-9.0/samples/</code><br><code>sudo make</code><br>这个过程大约需要10分钟以上。运行结束后，进入目录<br><code>cd /usr/local/cuda9.0/samples/1_Utilities</code><br>终端运行<br><code>./deviceQuery/deviceQuery</code>如图：<br>![在这里插入图片描述](Ubuntu18.04+NVIDIA-450驱动（GTX 960M）+CUDA+Cudnn+Anaconda+Pycharm+Yolov4/20201215154423966.png)<br>最后 nvcc -V<br>结果如图：<br>![img](Ubuntu18.04+NVIDIA-450驱动（GTX 960M）+CUDA+Cudnn+Anaconda+Pycharm+Yolov4/2020121515444894.png)<br>则表示安装成功</li>
+</ul>
+<h3 id="3-安装cuDNN"><a href="#3-安装cuDNN" class="headerlink" title="3. 安装cuDNN"></a>3. 安装cuDNN</h3><p>NVIDIA cuDNN是用于深度神经网络的GPU加速库。它强调性能、易用性和低内存开销…<br>cuDNN的安装其实是文件的复制：</p>
+<ul>
+<li>版本选择</li>
+</ul>
+<p>下载对应cuda版本的cudnn7.6.5,选择cuDNN Library for linux<br>网站（需登录）：<a target="_blank" rel="noopener" href="https://developer.nvidia.com/rdp/cudnn-download">https://developer.nvidia.com/rdp/cudnn-download</a><br>![在这里插入图片描述](Ubuntu18.04+NVIDIA-450驱动（GTX 960M）+CUDA+Cudnn+Anaconda+Pycharm+Yolov4/20201215152556565.png)<br>下载解压后复制文件到cuda安装位置：<br><code>sudo cp -P cuda/lib64/libcudnn* /usr/local/cuda-9.0/lib64/</code><br><code>sudo cp cuda/include/cudnn.h /usr/local/cuda-9.0/include/</code><br>同时增加读写权限：<br><code>sudo chmod a+r /usr/local/cuda-9.0/include/cudnn.h</code><br><code>sudo chmod a+r /usr/local/cuda-9.0/lib64/libcudnn*</code><br>查看cuDNN版本：<br><code>cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2</code>，如图：<br>![在这里插入图片描述](Ubuntu18.04+NVIDIA-450驱动（GTX 960M）+CUDA+Cudnn+Anaconda+Pycharm+Yolov4/2020121515412615.png)</p>
+<h3 id="4、安装Anaconda"><a href="#4、安装Anaconda" class="headerlink" title="4、安装Anaconda"></a>4、安装Anaconda</h3><p>Anaconda指的是一个开源的Python发行版本，其包含了conda、Python等180多个科学包及其依赖</p>
+<ol>
+<li>Anaconda指的是一个开源的Python发行版本，其包含了conda、Python等180多个科学包及其依赖项…anaconda （开源的Python包管理器）</li>
+<li>Anaconda是一个方便的python包管理和环境管理软件，一般用来配置不同的项目环境。<br>我们常常会遇到这样的情况，正在做的项目A和项目B分别基于python2和python3，而第电脑只能安装一个环境，这个时候Anaconda就派上了用场，它可以创建多个互不干扰的环境，分别运行不同版本的软件包，以达到兼容的目的</li>
+</ol>
+<p>python3.6的对应的是 Anaconda 5.2<br>![在这里插入图片描述](Ubuntu18.04+NVIDIA-450驱动（GTX 960M）+CUDA+Cudnn+Anaconda+Pycharm+Yolov4/20201215155035617.png)</p>
+<p>下载完毕后在文件所在终端执行<br><code>sudo sh -i Anaconda3-5.2.0-Linux-x86_64.sh</code><br>之后也是需要空格读完须知，然后一些交互界面，填yes和enter就可以。<br>这里提示是否安装vs,选择no（因为我有pycharm）<br>![在这里插入图片描述](Ubuntu18.04+NVIDIA-450驱动（GTX 960M）+CUDA+Cudnn+Anaconda+Pycharm+Yolov4/20201215165329639.png)<br>最后需要加入环境变量，这样python才能查看conda版本号，以及查看现在python版本，注意ubuntu自带python是python3才能执行。<br>因为我用的zsh，所以在.zshrc中加入<br><code>export PATH=&quot;/home/donaghy（用户名）/anaconda3/bin:$PATH&quot;</code></p>
+<p>ps:在重新安装的anaconda3中，会自动提示是否加入环境变量。输入yes即可。<br>然后重开一个终端，或者source ~/.bashrc ,source ~/.zshrc就可</p>
+<p>查看conda版本：<br>![在这里插入图片描述](Ubuntu18.04+NVIDIA-450驱动（GTX 960M）+CUDA+Cudnn+Anaconda+Pycharm+Yolov4/20201215165807507.png)</p>
+<blockquote>
+<p>参考博客：<a target="_blank" rel="noopener" href="https://blog.csdn.net/def_init_myself/article/details/104824136">https://blog.csdn.net/def_init_myself/article/details/104824136</a></p>
+</blockquote>
+<h3 id="4、安装pytorch"><a href="#4、安装pytorch" class="headerlink" title="4、安装pytorch"></a>4、安装pytorch</h3><p>PyTorch是一个开源的Python机器学习库，基于Torch，用于自然语言处理等应用程序。<br>2017年1月，由Facebook人工智能研究院（FAIR）基于Torch推出了PyTorch。它是一个基于Python的可续计算包，提供两个高级功能：1、具有强大的GPU加速的张量计算（如NumPy）。2、包含自动求导系统的深度神经网络。</p>
+<ul>
+<li>更改conda软件源为其添加国内源清华镜像，直接在家目录终端运行以下即可：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">conda  config  --add  channels  https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;anaconda&#x2F;pkgs&#x2F;free</span><br><span class="line">conda  config  --add  channels  https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;anaconda&#x2F;pkgs&#x2F;main</span><br><span class="line">conda  config  --add  channels  https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;anaconda&#x2F;pkgs&#x2F;r</span><br><span class="line">123</span><br></pre></td></tr></table></figure>
+<p>现在用的都是anaconda的pip，和python。为pip添加国内源：<br>如果没有~/.pip/pip.conf这个文件，可以创建一个。注意，首先创建一个文件夹：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">mkdir .pip</span><br><span class="line">sudo gedit  ~&#x2F;.pip&#x2F;pip.conf</span><br><span class="line">123</span><br></pre></td></tr></table></figure>
+<p>在文本中输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[global]</span><br><span class="line">index-url &#x3D; https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple</span><br><span class="line">[install]</span><br><span class="line">trusted-host&#x3D;https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn</span><br><span class="line">1234</span><br></pre></td></tr></table></figure>
+<p>更新conda<br><code>conda update conda</code></p>
+<p>安装pytorch：<br>去pytorch官网复制下载代码，记得删掉后面的-c pytorch,因为它表示从官网进行下载，不从清华镜像源下。<br><code>conda install pytorch==1.1.0 torchvision==0.3.0 cudatoolkit=9.0</code> 90为你cuda的版本<br>![在这里插入图片描述](Ubuntu18.04+NVIDIA-450驱动（GTX 960M）+CUDA+Cudnn+Anaconda+Pycharm+Yolov4/20201215170513118.png)<br>输入yes继续即可。</p>
+<p>出现错误：<br><code>Executing transaction: failed ERROR conda.core.link:_execute(502): An error occurred while uninstalling package &#39;defaults::numpy-1.14.3-py36hcd700cb_1&#39;.</code></p>
+<p>这是由于没有权限，运行如下命令即可：<br><code>sudo chown -R $USER:$USER /home/donaghy/anaconda3</code><br>修改自己的路径，再运行<br><code>conda install pytorch==1.1.0 torchvision==0.3.0 cudatoolkit=9.0</code><br>![在这里插入图片描述](Ubuntu18.04+NVIDIA-450驱动（GTX 960M）+CUDA+Cudnn+Anaconda+Pycharm+Yolov4/20201215191439274.png)</p>
+<h3 id="5、安装pycharm"><a href="#5、安装pycharm" class="headerlink" title="5、安装pycharm"></a>5、安装pycharm</h3><p>pycharm是目前使用最多的python IDE，功能强大，界面简洁美观，安装简单。</p>
+<p>从官网（<a target="_blank" rel="noopener" href="http://www.jetbrains.com/pycharm/download/#section=linux%EF%BC%89%E4%B8%8B%E8%BD%BDCommunity%E7%89%88">http://www.jetbrains.com/pycharm/download/#section=linux）下载Community版</a> for Linux。并将下载好的文件copy到想安装的目录下。</p>
+<ul>
+<li>安装</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ cd home&#x2F;zhichao&#x2F;pycharm</span><br><span class="line">$ tar xfz pycharm-community-2017.1.4.tar.gz</span><br><span class="line">$ cd pycharm-community-2017.1.4&#x2F;bin</span><br><span class="line">$ .&#x2F;pycharm.sh</span><br><span class="line">1234</span><br></pre></td></tr></table></figure>
+<p>可以在软件的tool工具栏中选择<br>接下来按照安装提示一步步继续就可以了。</p>
+<h3 id="6、YOLOv4"><a href="#6、YOLOv4" class="headerlink" title="6、YOLOv4"></a>6、YOLOv4</h3><p>官方github下载即可</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Donaghy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://github.com/donaghy956/pn/2020/12/25/Ubuntu18.04+NVIDIA-450%E9%A9%B1%E5%8A%A8%EF%BC%88GTX%20960M%EF%BC%89+CUDA+Cudnn+Anaconda+Pycharm+Yolov4/">https://github.com/donaghy956/pn/2020/12/25/Ubuntu18.04+NVIDIA-450%E9%A9%B1%E5%8A%A8%EF%BC%88GTX%20960M%EF%BC%89+CUDA+Cudnn+Anaconda+Pycharm+Yolov4/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://github.com/donaghy956/pn" target="_blank">让我们一起记录生活</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/pn/tags/QT/">QT</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/11/05/GgxMLEaSvqnbKJH.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/pn/2020/12/25/TX2%E5%88%B7%E6%9C%BA%EF%BC%88%E4%BA%B2%E6%B5%8B%EF%BC%89jetpack4.3/"><img class="prev-cover" data-lazy-src="https://i.loli.net/2021/11/05/GgxMLEaSvqnbKJH.jpg" onerror="onerror=null;src='/pn/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">TX2刷机（亲测）jetpack4.3</div></div></a></div><div class="next-post pull-right"><a href="/pn/2020/12/25/win10%E5%AE%89%E8%A3%85QT%E5%8F%8A%E6%89%93%E5%8C%85%E6%95%99%E7%A8%8B/"><img class="next-cover" data-lazy-src="https://i.loli.net/2021/11/05/GgxMLEaSvqnbKJH.jpg" onerror="onerror=null;src='/pn/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Win10下安装Qt5.9教程 及 打包教程</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/pn/2020/12/25/win10安装QT及打包教程/" title="Win10下安装Qt5.9教程 及 打包教程"><img class="cover" data-lazy-src="https://i.loli.net/2021/11/05/GgxMLEaSvqnbKJH.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-25</div><div class="title">Win10下安装Qt5.9教程 及 打包教程</div></div></a></div><div><a href="/pn/2020/12/25/使用Hexo+Github搭建个人博客：详细教程/" title="使用Hexo+Github搭建个人博客：详细教程"><img class="cover" data-lazy-src="https://i.loli.net/2021/11/05/GgxMLEaSvqnbKJH.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-25</div><div class="title">使用Hexo+Github搭建个人博客：详细教程</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">V</span><span class="switch-btn"></span><span class="second-comment">a</span></div></div><div class="comment-wrap"><div></div><div></div><div></div><div></div><div></div><div></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="/pn/img/head.png" onerror="this.onerror=null;this.src='/pn/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Donaghy</div><div class="author-info__description">一些个人学习、工作和生活中的记录</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/pn/archives/"><div class="headline">文章</div><div class="length-num">12</div></a></div><div class="card-info-data-item is-center"><a href="/pn/tags/"><div class="headline">标签</div><div class="length-num">1</div></a></div></div><a class="button--animated" id="card-info-btn" href="https://github.com/donaghy956"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/donaghy956" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:952957407@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的博客！</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Ubuntu18-04-NVIDIA-450%E9%A9%B1%E5%8A%A8%EF%BC%88GTX-960M%EF%BC%89-CUDA-Cudnn-Anaconda-Pycharm-Yolov4"><span class="toc-number">1.</span> <span class="toc-text">Ubuntu18.04+NVIDIA-450驱动（GTX 960M）+CUDA+Cudnn+Anaconda+Pycharm+Yolov4</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AE%89%E8%A3%85%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.安装显卡驱动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AE%89%E8%A3%85CUDA"><span class="toc-number">1.0.2.</span> <span class="toc-text">2. 安装CUDA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%AE%89%E8%A3%85cuDNN"><span class="toc-number">1.0.3.</span> <span class="toc-text">3. 安装cuDNN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E5%AE%89%E8%A3%85Anaconda"><span class="toc-number">1.0.4.</span> <span class="toc-text">4、安装Anaconda</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E5%AE%89%E8%A3%85pytorch"><span class="toc-number">1.0.5.</span> <span class="toc-text">4、安装pytorch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E5%AE%89%E8%A3%85pycharm"><span class="toc-number">1.0.6.</span> <span class="toc-text">5、安装pycharm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81YOLOv4"><span class="toc-number">1.0.7.</span> <span class="toc-text">6、YOLOv4</span></a></li></ol></li></ol></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/pn/2021/11/05/%E8%BD%AF%E4%BB%B6%E8%B5%84%E6%BA%90/" title="软件资源"><img data-lazy-src="https://i.loli.net/2021/11/05/GgxMLEaSvqnbKJH.jpg" onerror="this.onerror=null;this.src='/pn/img/404.jpg'" alt="软件资源"/></a><div class="content"><a class="title" href="/pn/2021/11/05/%E8%BD%AF%E4%BB%B6%E8%B5%84%E6%BA%90/" title="软件资源">软件资源</a><time datetime="2021-11-05T07:30:08.000Z" title="发表于 2021-11-05 15:30:08">2021-11-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/pn/2020/12/25/%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" title="node.js-setup wizard ended prematurely失败解决方法"><img data-lazy-src="https://i.loli.net/2020/12/30/5FOHjJhyuYVNv2g.jpg" onerror="this.onerror=null;this.src='/pn/img/404.jpg'" alt="node.js-setup wizard ended prematurely失败解决方法"/></a><div class="content"><a class="title" href="/pn/2020/12/25/%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" title="node.js-setup wizard ended prematurely失败解决方法">node.js-setup wizard ended prematurely失败解决方法</a><time datetime="2020-12-25T06:58:00.000Z" title="发表于 2020-12-25 14:58:00">2020-12-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/pn/2020/12/25/SLAM%E9%9C%80%E8%A6%81%E7%9A%84%E5%90%84%E7%B1%BB%E5%BA%93%E6%95%B4%E5%90%88%E5%AE%8C%E5%85%A8%E5%8C%85%EF%BC%88%E4%BA%B2%E6%B5%8B%E5%8F%AF%E7%94%A8%EF%BC%89/" title="SLAM需要的各类库整合完全包（亲测可用）"><img data-lazy-src="https://i.loli.net/2021/11/05/GgxMLEaSvqnbKJH.jpg" onerror="this.onerror=null;this.src='/pn/img/404.jpg'" alt="SLAM需要的各类库整合完全包（亲测可用）"/></a><div class="content"><a class="title" href="/pn/2020/12/25/SLAM%E9%9C%80%E8%A6%81%E7%9A%84%E5%90%84%E7%B1%BB%E5%BA%93%E6%95%B4%E5%90%88%E5%AE%8C%E5%85%A8%E5%8C%85%EF%BC%88%E4%BA%B2%E6%B5%8B%E5%8F%AF%E7%94%A8%EF%BC%89/" title="SLAM需要的各类库整合完全包（亲测可用）">SLAM需要的各类库整合完全包（亲测可用）</a><time datetime="2020-12-25T06:58:00.000Z" title="发表于 2020-12-25 14:58:00">2020-12-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/pn/2020/12/25/Ubuntu%E5%AE%89%E8%A3%85OpenCV3.4+contrib%EF%BC%88%E5%B7%B2%E8%A7%A3%E5%86%B3%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98%EF%BC%8C%E7%9B%B4%E6%8E%A5%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E5%8D%B3%E5%8F%AF%EF%BC%89/" title="Ubuntu安装OpenCV3.4+contrib（已解决报错问题，直接编译安装即可）"><img data-lazy-src="https://i.loli.net/2021/11/05/GgxMLEaSvqnbKJH.jpg" onerror="this.onerror=null;this.src='/pn/img/404.jpg'" alt="Ubuntu安装OpenCV3.4+contrib（已解决报错问题，直接编译安装即可）"/></a><div class="content"><a class="title" href="/pn/2020/12/25/Ubuntu%E5%AE%89%E8%A3%85OpenCV3.4+contrib%EF%BC%88%E5%B7%B2%E8%A7%A3%E5%86%B3%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98%EF%BC%8C%E7%9B%B4%E6%8E%A5%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E5%8D%B3%E5%8F%AF%EF%BC%89/" title="Ubuntu安装OpenCV3.4+contrib（已解决报错问题，直接编译安装即可）">Ubuntu安装OpenCV3.4+contrib（已解决报错问题，直接编译安装即可）</a><time datetime="2020-12-25T06:58:00.000Z" title="发表于 2020-12-25 14:58:00">2020-12-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/pn/2020/12/25/TX2%E5%88%B7%E6%9C%BA%EF%BC%88%E4%BA%B2%E6%B5%8B%EF%BC%89jetpack4.3/" title="TX2刷机（亲测）jetpack4.3"><img data-lazy-src="https://i.loli.net/2021/11/05/GgxMLEaSvqnbKJH.jpg" onerror="this.onerror=null;this.src='/pn/img/404.jpg'" alt="TX2刷机（亲测）jetpack4.3"/></a><div class="content"><a class="title" href="/pn/2020/12/25/TX2%E5%88%B7%E6%9C%BA%EF%BC%88%E4%BA%B2%E6%B5%8B%EF%BC%89jetpack4.3/" title="TX2刷机（亲测）jetpack4.3">TX2刷机（亲测）jetpack4.3</a><time datetime="2020-12-25T06:58:00.000Z" title="发表于 2020-12-25 14:58:00">2020-12-25</time></div></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(https://i.loli.net/2021/11/05/GgxMLEaSvqnbKJH.jpg)"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Donaghy</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="rightside.chat_btn"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/pn/js/utils.js"></script><script src="/pn/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="/pn/js/search/local-search.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script> <script async src="/js/weather.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script></div><script src="/pn/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/pn/live2dw/assets/z16.model.json"},"display":{"position":"left","width":200,"height":400},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
